@@ -3,19 +3,26 @@ import './App.css';
 import './searchbox/SearchBox.css';
 import SearchBox, {Movie, MoviesResult} from "./searchbox/SearchBox";
 import {MovieList} from "./movielist/MovieList";
+import {Loading} from "./loading/Loading";
 
 function App() {
 
+    const INITIAL_PAGE: number = 1;
     const [movies, setMovies] = useState<Movie[]>([]);
-    const [page, setPage] = useState<number>(1);
+    const [page, setPage] = useState<number>(INITIAL_PAGE);
     const [newSearch, setNewSearch] = useState<boolean>(true);
+    const [loading, setLoading] = useState<boolean>(true);
 
     const handleSearched = (moviesResult: MoviesResult) => {
         setMovies(newSearch ? moviesResult.movies : [...movies, ...moviesResult.movies]);
         setNewSearch(true);
         if (newSearch) {
-            setPage(1);
+            setPage(INITIAL_PAGE);
         }
+    }
+
+    const handleLoading = (load:boolean) => {
+        setLoading(load);
     }
 
     const handleScroll = () => {
@@ -24,10 +31,11 @@ function App() {
     }
 
     return (
-      <div className="App">
-          <SearchBox onSearch={handleSearched} page={page} />
-          <MovieList movies={movies} onScroll={handleScroll} />
-      </div>
+        <div className="App">
+          <SearchBox onSearch={handleSearched} onLoading={handleLoading} page={page} />
+          <MovieList movies={movies} onScroll={handleScroll} loading={loading} />
+          {loading ? <Loading /> : ''}
+        </div>
     );
 }
 

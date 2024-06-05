@@ -1,19 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {Movie} from "../searchbox/SearchBox";
 
 interface MovieListProps {
     movies: Movie[],
     onScroll: () => void,
+    loading: boolean,
 }
-export const MovieList: React.FC<MovieListProps> = ({ movies,onScroll }) => {
-
-    const [page, setPage] = useState(1);
+export const MovieList: React.FC<MovieListProps> = ({ movies,onScroll, loading }) => {
 
     useEffect(() => {
         const handleScroll = () => {
             if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
-                setPage(2);
-                console.log(page);
                 onScroll();
             }
         };
@@ -28,7 +25,7 @@ export const MovieList: React.FC<MovieListProps> = ({ movies,onScroll }) => {
         window.location.reload();
     }
 
-    if (!movies.length) {
+    if (!movies.length && !loading) {
         return (
             <div className="flex justify-center">
                 <div

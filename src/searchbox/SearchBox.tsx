@@ -3,6 +3,7 @@ import {getMovies, getTrendingMovies} from "../apis/TMDBApi";
 
 interface SearchProps {
     onSearch: (moviesResult: MoviesResult) => void,
+    onLoading: (loading: boolean) => void,
     page: number,
 }
 export interface Movie {
@@ -19,7 +20,7 @@ export interface MoviesResult {
     total_pages: number,
 }
 
-const SearchBox: React.FC<SearchProps> = ({ onSearch, page }) => {
+const SearchBox: React.FC<SearchProps> = ({ onSearch, onLoading, page }) => {
     const [keyword, setKeyword] = useState<string>('');
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,6 +29,8 @@ const SearchBox: React.FC<SearchProps> = ({ onSearch, page }) => {
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.target && event.preventDefault();
+
+        onLoading(true);
 
         let moviesResult: MoviesResult = {
             page: 0,
@@ -50,7 +53,7 @@ const SearchBox: React.FC<SearchProps> = ({ onSearch, page }) => {
                 };
             });
         }
-
+        onLoading(false);
         onSearch(moviesResult);
     };
 
