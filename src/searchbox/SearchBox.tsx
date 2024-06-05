@@ -2,7 +2,8 @@ import React, {useState, FormEvent, useEffect} from 'react';
 import {getMovies, getTrendingMovies} from "../apis/TMDBApi";
 
 interface SearchProps {
-    onSearch: (moviesResult: MoviesResult) => void;
+    onSearch: (moviesResult: MoviesResult) => void,
+    page: number,
 }
 export interface Movie {
     id: number,
@@ -18,7 +19,7 @@ export interface MoviesResult {
     total_pages: number,
 }
 
-const SearchBox: React.FC<SearchProps> = ({ onSearch }) => {
+const SearchBox: React.FC<SearchProps> = ({ onSearch, page }) => {
     const [keyword, setKeyword] = useState<string>('');
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +35,7 @@ const SearchBox: React.FC<SearchProps> = ({ onSearch }) => {
             total_pages: 0
         }
 
-        let result = (keyword !== '' ? await getMovies(keyword) : await getTrendingMovies());
+        let result = (keyword !== '' ? await getMovies(keyword, page) : await getTrendingMovies(page));
 
         if (result) {
             moviesResult.page = result.page;
@@ -55,7 +56,7 @@ const SearchBox: React.FC<SearchProps> = ({ onSearch }) => {
 
     useEffect(() => {
         handleSubmit({} as FormEvent<HTMLFormElement>);
-    }, []);
+    }, [page]);
 
     return (
         <div className="p-4">

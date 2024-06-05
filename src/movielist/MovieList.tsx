@@ -1,10 +1,28 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Movie} from "../searchbox/SearchBox";
 
 interface MovieListProps {
-    movies: Movie[]
+    movies: Movie[],
+    onScroll: () => void,
 }
-export const MovieList: React.FC<MovieListProps> = ({ movies }) => {
+export const MovieList: React.FC<MovieListProps> = ({ movies,onScroll }) => {
+
+    const [page, setPage] = useState(1);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
+                setPage(2);
+                console.log(page);
+                onScroll();
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     return (
         <div className="w-full flex justify-center">
