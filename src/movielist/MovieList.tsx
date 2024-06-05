@@ -24,11 +24,39 @@ export const MovieList: React.FC<MovieListProps> = ({ movies,onScroll }) => {
         };
     }, []);
 
+    const handlePageRefresh = () => {
+        window.location.reload();
+    }
+
+    if (!movies.length) {
+        return (
+            <div className="flex justify-center">
+                <div
+                    className="flex items-center p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300"
+                    role="alert">
+                    <svg className="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                         fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                    </svg>
+                    <span className="sr-only">Info</span>
+                    <div>
+                        <span className="font-medium">No movies found! </span>
+                        <a href="#" className="font-semibold underline hover:no-underline" onClick={handlePageRefresh}>
+                            Click here
+                        </a> for weekly trending list.
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="w-full flex justify-center">
             <div className="movieList grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-3">
                 {movies.map((movie: Movie) => (
-                    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+                    <div
+                        className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
                         key={movie.id}>
                         <a href="#">
                             <img className="rounded-t-lg" src={(movie.poster_path
