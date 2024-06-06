@@ -130,10 +130,10 @@ export const MovieModal: React.FC<MovieModalProps> = ({ movieId }) => {
                                 {movie.overview ? <div className="dark:text-white">Description:
                                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{movie.overview}</p>
                                 </div> : ''}
-                                <div className="mb-1 dark:text-white">IMDB: <a
+                                {movie.imdb_id ? <div className="mb-1 dark:text-white">IMDB: <a
                                     href={`https://imdb.com/title/${movie.imdb_id}`} target="_blank"
                                     className="text-gray-700 dark:text-gray-400 underline">https://imdb.com/title/{movie.imdb_id}</a>
-                                </div>
+                                </div> : ''}
                             </div>
                         </div>
                 </div>
