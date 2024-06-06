@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Reel Radar",
+  "name": "Reel Radar - Search and find your favourite movie!",
   "icons": [
     {
       "src": "favicon.ico",

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 import './searchbox/SearchBox.css';
-import SearchBox, {Movie, MoviesResult} from "./searchbox/SearchBox";
+import {SearchBox, Movie, MoviesResult} from "./searchbox/SearchBox";
 import {MovieList} from "./movielist/MovieList";
 import {Loading} from "./loading/Loading";
 
@@ -31,10 +31,10 @@ function App() {
     }
 
     return (
-        <div className="App">
-          <SearchBox onSearch={handleSearched} onLoading={handleLoading} page={page} />
-          <MovieList movies={movies} onScroll={handleScroll} loading={loading} />
-          {loading ? <Loading /> : ''}
+        <div className="App dark:bg-gray-900 h-full">
+            <SearchBox onSearch={handleSearched} onLoading={handleLoading} page={page} />
+            <MovieList movies={movies} onScroll={handleScroll} loading={loading} />
+            {loading ? <Loading /> : ''}
         </div>
     );
 }

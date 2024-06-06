@@ -35,3 +35,7 @@ export async function getMovies(keyword: string, page: number = 1) {
 export async function getTrendingMovies(page: number = 1) {
     return await TMDBApi(`/3/trending/movie/week?language=en-US&page=${page}`);
 }
+
+export async function getMovie(movieId: number) {
+    return await TMDBApi(`/3/movie/${movieId}?language=en-US`);
+}
