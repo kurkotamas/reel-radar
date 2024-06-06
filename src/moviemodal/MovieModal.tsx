@@ -85,7 +85,7 @@ export const MovieModal: React.FC<MovieModalProps> = ({ movieId }) => {
                             <img className="object-cover w-full h-96 md:h-auto md:max-w-xs rounded-t-lg sm:rounded-none sm:rounded-s-lg"
                                 src={(movie.poster_path
                                         ? `https://media.themoviedb.org/t/p/w440_and_h660_face${movie.poster_path}`
-                                        : `https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/624px-No-Image-Placeholder.svg.png`
+                                        : 'https://fakeimg.pl/440x660/?text=No+Image'
                                 )}
                             />
                             <div className="text-left p-4">

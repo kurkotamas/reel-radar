@@ -62,7 +62,7 @@ export const MovieList: React.FC<MovieListProps> = ({ movies,onScroll, loading }
                         <div className="relative overflow-hidden">
                             <img className="rounded-t-lg hover:scale-105 transition duration-1000 ease-in-out" src={(movie.poster_path
                                 ? `https://media.themoviedb.org/t/p/w440_and_h660_face${movie.poster_path}`
-                                : `https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/624px-No-Image-Placeholder.svg.png`)}
+                                : 'https://fakeimg.pl/440x660/?text=No+Image')}
                                  alt=""/>
                             <div className="absolute bottom-0 right-0 w-10 p-1 bg-amber-500 text-white rounded-tl-lg">{movie.vote_average}</div>
                         </div>
