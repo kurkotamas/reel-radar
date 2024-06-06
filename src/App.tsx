@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import './App.css';
-import './searchbox/SearchBox.css';
 import {SearchBox, Movie, MoviesResult} from "./searchbox/SearchBox";
 import {MovieList} from "./movielist/MovieList";
 import {Loading} from "./loading/Loading";
