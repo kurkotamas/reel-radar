@@ -88,7 +88,7 @@ export const MovieModal: React.FC<MovieModalProps> = ({ movieId }) => {
                                         : 'https://fakeimg.pl/440x660/?text=No+Image'
                                 )}
                             />
-                            <div className="text-left p-4">
+                            <div className="flex flex-col text-left p-4">
                                 <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                     {movie.title}
                                 </h5>
@@ -113,27 +113,34 @@ export const MovieModal: React.FC<MovieModalProps> = ({ movieId }) => {
                                         </svg>
                                     </span>
                                 </div>
-                                {movie.release_date ? <div className="mb-1 dark:text-white">Release date:
-                                    <span className="text-gray-700 dark:text-gray-400"> {movie.release_date.toLocaleString("en-US", {
-                                        year: "numeric",
-                                        month: "2-digit",
-                                        day: "2-digit"
-                                    })}</span>
+                                {movie.genres.length ? <div className="mb-1">
+                                    {movie.genres.map((genre: any) => (
+                                        <span className="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">{genre.name}</span>
+                                    ))}
+                                </div> : ''}
+                                <div className="mt-auto">
+                                    {movie.release_date ? <div className="mb-1 dark:text-white">Release date:
+                                        <span className="text-gray-700 dark:text-gray-400"> {movie.release_date.toLocaleString("en-US", {
+                                            year: "numeric",
+                                            month: "2-digit",
+                                            day: "2-digit"
+                                        })}</span>
+                                        </div> : ''}
+                                    {movie.budget ? <div className="mb-1 dark:text-white">Budget:
+                                        <span
+                                            className="text-gray-700 dark:text-gray-400"> {movie.budget.toLocaleString("en-US", {
+                                            style: "currency",
+                                            currency: "USD"
+                                        })}</span>
                                     </div> : ''}
-                                {movie.budget ? <div className="mb-1 dark:text-white">Budget:
-                                    <span
-                                        className="text-gray-700 dark:text-gray-400"> {movie.budget.toLocaleString("en-US", {
-                                        style: "currency",
-                                        currency: "USD"
-                                    })}</span>
-                                </div> : ''}
-                                {movie.overview ? <div className="dark:text-white">Description:
-                                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{movie.overview}</p>
-                                </div> : ''}
-                                {movie.imdb_id ? <div className="mb-1 dark:text-white">IMDB: <a
-                                    href={`https://imdb.com/title/${movie.imdb_id}`} target="_blank"
-                                    className="text-gray-700 dark:text-gray-400 underline">https://imdb.com/title/{movie.imdb_id}</a>
-                                </div> : ''}
+                                    {movie.overview ? <div className="dark:text-white">Description:
+                                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{movie.overview}</p>
+                                    </div> : ''}
+                                    {movie.imdb_id ? <div className="mb-1 dark:text-white">IMDB: <a
+                                        href={`https://imdb.com/title/${movie.imdb_id}`} target="_blank"
+                                        className="text-gray-700 dark:text-gray-400 underline">https://imdb.com/title/{movie.imdb_id}</a>
+                                    </div> : ''}
+                                </div>
                             </div>
                         </div>
                 </div>
