@@ -29,7 +29,7 @@ export const MovieModal: React.FC<MovieModalProps> = ({ movieId }) => {
 
     const toggleModal = async () => {
         setIsOpen(!isOpen);
-        if (!isOpen) {
+        if (!isOpen && !movie?.movieId) {
             let movieResult = await getMovie(movieId);
             let genres = movieResult.genres.map((genre: any) => {
                 return {
@@ -82,8 +82,7 @@ export const MovieModal: React.FC<MovieModalProps> = ({ movieId }) => {
                                           strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                                 </svg>
                             </button>
-                            <img
-                                className="object-cover w-full h-96 md:h-auto md:max-w-xs rounded-t-lg sm:rounded-none sm:rounded-s-lg"
+                            <img className="object-cover w-full h-96 md:h-auto md:max-w-xs rounded-t-lg sm:rounded-none sm:rounded-s-lg"
                                 src={(movie.poster_path
                                         ? `https://media.themoviedb.org/t/p/w440_and_h660_face${movie.poster_path}`
                                         : `https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/624px-No-Image-Placeholder.svg.png`

@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-const API_KEY = 'a040ded43637724cfe7b99cc3d51dce7'
+const API_KEY = '43a7ea280d085bd0376e108680615c7f'
 const BASE_URL = 'https://api.themoviedb.org';
 
 export async function TMDBApi(query: string, page: number = 1, method: string = 'GET') {
